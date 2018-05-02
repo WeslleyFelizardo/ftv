@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.services;
+package com.example.futevolei.services;
 
 import com.example.futevolei.entities.Tournament;
 import com.example.futevolei.repositories.TournamentRepository;

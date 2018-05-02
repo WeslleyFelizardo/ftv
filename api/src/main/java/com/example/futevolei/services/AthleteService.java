@@ -8,6 +8,7 @@ package com.example.futevolei.services;
 
 import com.example.futevolei.entities.Athlete;
 import com.example.futevolei.repositories.AthleteRepository;
+import com.example.futevolei.utils.PasswordUtils;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,15 @@ public class AthleteService implements AbstractService<Athlete> {
     
     @Override
     public Athlete save(Athlete entity) {
+        
+        entity.setPassword(PasswordUtils.gerarBCrypt(entity.getPassword()));
+        
         return athleteRepository.save(entity);
     }
 
     @Override
     public Optional<Athlete> findById(Long id) {
+        
         return athleteRepository.findById(id);
     }
 

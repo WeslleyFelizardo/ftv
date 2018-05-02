@@ -5,12 +5,22 @@
  */
 package com.example.futevolei.controllers;
 
+import com.example.futevolei.dtos.AthleteDto;
 import com.example.futevolei.entities.Athlete;
 import com.example.futevolei.enums.PerfilEnum;
 import com.example.futevolei.services.AthleteService;
+import com.example.futevolei.utils.ObjectMapperUtils;
 import com.example.futevolei.utils.PasswordUtils;
+import java.util.ArrayList;
+import java.util.List;
+import javax.websocket.server.PathParam;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,24 +31,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/athlete")
 public class AthleteController {
-    
+
     @Autowired
     private AthleteService athleteService;
-    
+
     @PostMapping
-    public void save() {
-        Athlete athlete = new Athlete();
-
-        athlete.setEmail("test@gmail.com");
-        athlete.setUserName("test@gmail.com");
-        athlete.setPermission(PerfilEnum.ROLE_ADMIN);
-        athlete.setPassword(PasswordUtils.gerarBCrypt("123456"));
-        athlete.setMobileNumber("911134296");
-        athlete.setName("Weslley");
-        athlete.setNickName("teste");
+    public ResponseEntity<Athlete> save(@RequestBody Athlete athlete) {
         
-        athleteService.save(athlete);
-
+        return ResponseEntity.ok(athleteService.save(athlete));
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<AthleteDto> findById(@PathVariable("id") Long id) {
+        
+        AthleteDto athleteDto = ObjectMapperUtils.map(athleteService.findById(id).get(), AthleteDto.class);
+        
+        return ResponseEntity.ok(athleteDto);
+    }
+    
+    @GetMapping
+    public ResponseEntity<List<AthleteDto>> findAll() {
+        
+        List<AthleteDto> listAthlete = ObjectMapperUtils.mapAll(athleteService.findAll(), AthleteDto.class);
+        
+        return ResponseEntity.ok(listAthlete);
     }
     
 }
