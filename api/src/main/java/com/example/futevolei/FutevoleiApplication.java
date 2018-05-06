@@ -1,7 +1,7 @@
 package com.example.futevolei;
 
 import com.example.futevolei.entities.Athlete;
-import com.example.futevolei.enums.PerfilEnum;
+import com.example.futevolei.enums.PermissionEnum;
 import com.example.futevolei.services.AthleteService;
 import com.example.futevolei.utils.PasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;

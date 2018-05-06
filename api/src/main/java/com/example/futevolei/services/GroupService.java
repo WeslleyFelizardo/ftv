@@ -5,21 +5,21 @@
  */
 package com.example.futevolei.services;
 
+import com.example.futevolei.entities.Group;
 import java.util.List;
-import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author wfeli
  */
-public interface AbstractService<T> {
+
+@Service
+public class GroupService {
     
-    T save(T entity);
-    
-    Optional<T> findById(Long id);
-    
-    void delete(Long id);
-    
-    List<T> findAll();
+    public List<Group> generateGroup(Long idTournament) {
+        
+        return null;
+    }
     
 }

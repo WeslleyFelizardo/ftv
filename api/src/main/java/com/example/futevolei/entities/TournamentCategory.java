@@ -15,8 +15,9 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -41,13 +42,14 @@ public class TournamentCategory implements Serializable{
     private BigDecimal valueSubscription;
     
     // Relacionamentos 
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("tournament_id")
+    //@Id
+    @ManyToOne
+    @JoinColumn(name = "tournament_id", insertable = false, updatable = false)
     private Tournament tournament;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("category_id")
+    //@Id
+    @ManyToOne
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
     
     @OneToMany(mappedBy = "tournamentCategory", fetch = FetchType.LAZY)
@@ -149,9 +151,9 @@ public class TournamentCategory implements Serializable{
             return false;
         }
         final TournamentCategory other = (TournamentCategory) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
+//        if (!Objects.equals(this.id, other.id)) {
+//            return false;
+//        }
         if (!Objects.equals(this.createdOn, other.createdOn)) {
             return false;
         }

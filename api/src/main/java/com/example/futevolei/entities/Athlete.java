@@ -6,15 +6,19 @@
 package com.example.futevolei.entities;
 
 
-import com.example.futevolei.enums.PerfilEnum;
+import com.example.futevolei.enums.PermissionEnum;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -43,7 +47,15 @@ public class Athlete implements Serializable {
     private String password;
     @Enumerated(EnumType.STRING)
     @Column(name = "permission", nullable = false)
-    private PerfilEnum permission;
+    private PermissionEnum permission;
+    
+    @OneToOne(mappedBy = "athleteOne", cascade = CascadeType.ALL, 
+              fetch = FetchType.LAZY, optional = false)
+    private Team teamOne;
+    
+    @OneToOne(mappedBy = "athleteTwo", cascade = CascadeType.ALL, 
+              fetch = FetchType.LAZY, optional = false)
+    private Team teamTwo;
     
     public Long getId() {
         return id;
@@ -93,11 +105,11 @@ public class Athlete implements Serializable {
         this.password = password;
     }
 
-    public PerfilEnum getPermission() {
+    public PermissionEnum getPermission() {
         return permission;
     }
 
-    public void setPermission(PerfilEnum permission) {
+    public void setPermission(PermissionEnum permission) {
         this.permission = permission;
     }
 
@@ -107,6 +119,22 @@ public class Athlete implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Team getTeamOne() {
+        return teamOne;
+    }
+
+    public void setTeamOne(Team teamOne) {
+        this.teamOne = teamOne;
+    }
+
+    public Team getTeamTwo() {
+        return teamTwo;
+    }
+
+    public void setTeamTwo(Team teamTwo) {
+        this.teamTwo = teamTwo;
     }
     
     

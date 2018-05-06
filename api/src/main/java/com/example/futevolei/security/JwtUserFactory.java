@@ -2,7 +2,7 @@ package com.example.futevolei.security;
 
 
 import com.example.futevolei.entities.Athlete;
-import com.example.futevolei.enums.PerfilEnum;
+import com.example.futevolei.enums.PermissionEnum;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class JwtUserFactory {
 	 * @param perfilEnum
 	 * @return List<GrantedAuthority>
 	 */
-	private static List<GrantedAuthority> mapToGrantedAuthorities(PerfilEnum perfilEnum) {
+	private static List<GrantedAuthority> mapToGrantedAuthorities(PermissionEnum perfilEnum) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		authorities.add(new SimpleGrantedAuthority(perfilEnum.toString()));
 		return authorities;

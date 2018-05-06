@@ -8,7 +8,9 @@ package com.example.futevolei.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,5 +57,15 @@ public class Category implements Serializable {
         cascade = CascadeType.ALL, 
         orphanRemoval = true
     )
-    private List<TournamentCategory> tournaments = new ArrayList<>();
+    private Set<TournamentCategory> tournaments = new HashSet<>();
+
+    public Set<TournamentCategory> getTournaments() {
+        return tournaments;
+    }
+
+    public void setTournaments(Set<TournamentCategory> tournaments) {
+        this.tournaments = tournaments;
+    }
+    
+    
 }

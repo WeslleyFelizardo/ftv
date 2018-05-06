@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -61,7 +62,7 @@ public class Tournament implements Serializable {
         cascade = CascadeType.ALL,
         orphanRemoval = true
     )
-    private List<TournamentCategory> categories = new ArrayList<>();
+    private Set<TournamentCategory> categories = new HashSet<>();
     
     @OneToMany(mappedBy = "tournament", fetch = FetchType.LAZY)
     private List<Photo> photos;
@@ -117,11 +118,11 @@ public class Tournament implements Serializable {
         this.photos = photos;
     }
 
-    public List<TournamentCategory> getCategories() {
+    public Set<TournamentCategory> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<TournamentCategory> categories) {
+    public void setCategories(Set<TournamentCategory> categories) {
         this.categories = categories;
     }
 

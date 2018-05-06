@@ -7,7 +7,7 @@ package com.example.futevolei.controllers;
 
 import com.example.futevolei.dtos.AthleteDto;
 import com.example.futevolei.entities.Athlete;
-import com.example.futevolei.enums.PerfilEnum;
+import com.example.futevolei.enums.PermissionEnum;
 import com.example.futevolei.services.AthleteService;
 import com.example.futevolei.utils.ObjectMapperUtils;
 import com.example.futevolei.utils.PasswordUtils;

@@ -34,8 +34,8 @@ public class TournamentService implements AbstractService<Tournament> {
     }
 
     @Override
-    public void delete(Tournament entity) {
-        tournamentRepository.delete(entity);
+    public void delete(Long id) {
+        tournamentRepository.deleteById(id);
     }
 
     @Override
